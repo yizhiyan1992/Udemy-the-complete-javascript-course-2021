@@ -1,0 +1,119 @@
+1. what is javascript:
+    javascript is a
+        a) high-levle, // don't need to worry about memory management
+        b) oop, // object-oriented
+        c) multi-paradigm // different ways to code 
+        programming language.
+
+
+2. The role of JS:
+    HTML-content
+    CSS-style
+    JS-function
+
+3. JS release versions
+
+    ES5->ES6(2015)->...->ES11(2020)
+
+    ES6-ES11 are called modern javascript.
+
+
+4. Java value:
+    1) primitive
+    2) object
+    
+    There are 7 primitive types:
+        . number
+        . string
+        . boolean
+        . undefined
+        . null
+        . symbol (ES2015)
+        . bigInt (ES2020)
+        (the first three are mostly frequent used ones)
+    
+    Javascript is a dynamic typing language.
+
+    how to detect the type of the variable? use typeof (e.g. console.log(typeof "Striiii));
+
+5. variable declaration: var, let, const
+    1. let and const appear is ES6, before that it is var
+    2. difference: let and const are block level declaration, but var is functional scope.
+                   the variables assgined using const can not be changed anymore, and when declaring a variable using const, must assign an initial value (const v1; //this is wrong!)
+    3. guidance:
+        . do not use var
+        . always use const as priority (reduce the error caused by overriding name reference)
+        . if the var need to change, then use let.
+
+6. Operators and its precedence
+    . all the math operators are executed before comparison operators
+    . most operators are executed from left to right, but some are executed from right to left (like =, condition?A:B)
+    . () has the hightest precedence
+
+
+    String operation:
+        const a=1997;
+        const b=3;
+        console.log("hello"+a+b)  ---> "hello19973"
+        console.log("hello"+(a+b))  ---> "hello2000"
+        console.log("hello"+a-b)  ---> error
+
+    template string:
+    `Just like a fire`;
+    `Just iike ${variable} ha`;
+
+    multiline strings:
+        . use \n\ in string ;    'line \n\ change'
+        . use nothing in template literal `line 
+                                            change`
+
+7. type conversion & type coersion 
+    . type conversion:
+        . String ---> number  Number(s)
+        . Number ---> String  String(num)
+
+    . type coersion:
+        . string + number ---> string (e.g. '11'+5='115')
+        .string - * / number ---> number (e.g. '11'-5=6)
+        2+3+4+'5'='95'
+        '10'-'4'-'3'-2+'5'='15' (from left to right+)
+
+8. Truthy and falsy values
+    When when convert the value into boolean type, there are 5 values will turn to false.
+    Those values are called falsy value:
+    . 0
+    . ""
+    . undefined
+    . null
+    . NaN
+
+9. euqality
+    strict equality: ===
+    loose equality: ==
+    loose equality will always do type coersion
+    The advice is that always use stric equality for comparison!
+
+10. pop-up frame
+    .alert()    // retur nothing
+    .confirm()  //return a boolean value
+    .prompt()   //return a string
+
+11. boolean logic
+    &&, ||, ! 
+    precedence:!>&&>||
+
+12. statement & expression
+    expression is like giving/creating a new variable
+
+13. tenary operator
+    var a=statement?res1:res2;
+
+14. JS ES6 and ES5
+    ES5 was released in 2009
+    ES6(also known as ES2015) was released in 2015
+    backward compatible but not forward compatible (it means that old code can run in modern JS engine, but modern JS code may not run on old engine)
+
+    How to use modern JS today?
+        . during develpment: use the latest GOOGLE CHROME
+        . during production: use Babel and polyfill your code (converting back to ES5 to ensure browser compatibility for all users)
+
