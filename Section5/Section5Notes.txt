@@ -1,0 +1,23 @@
+1. use prettier reformatter
+
+2. how to create snippet in VScode 
+
+3. how to use node.js live-server 
+
+4. How to solve problem as programmer?
+    4 steps: 1. make sure you understand the question.
+             2. break the big problem into sub-problems
+             3. doing research (google, stackoverflow)
+             4. writing pseudocode before writing the real code
+
+5. Using google, stackoverflow, and MDN
+
+6. debugging
+    console.log()
+    console.warn()
+    console.error()
+    console.table() //show the detail information of an object
+
+    how to use Chrome debugger?
+        . Sources->page-> add break point
+        . or add debugger; in js script
