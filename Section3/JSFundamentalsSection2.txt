@@ -1,0 +1,51 @@
+1. strict mode 'use strict';
+    this statement must be in the first line;
+    always recommend to use the strict mode, because it can help us identify the bugs.
+
+2. function
+    three ways to create function:
+        . function declaration function f1() {};
+        . function expression const f1=function (){};
+        . arrow function (ES6) const f1=(params)=>{statements};
+
+        major difference: function can be called before created for function declaration. But function must be called after created for function expression.
+        Arrow function cannot pass this in the function.
+    
+    calling a function inside a function.
+
+3. Array
+    . create an array (two ways)
+        . const arr=[];
+        . const arr=new Array();
+    
+    . get the size of the arr: arr.length;
+    . In JS, the type of array is object!
+    . when we name arrays, we always use plural (like names, fruits)
+
+    . basic operations (insertion/deletion/indexing)
+        arr.push(ele) //insert from the tail
+        arr.unshift(ele) //insert from the head
+        arr.pop() //delete from the tail
+        arr.shift() //delete from the head
+        arr.indexOf(ele) //return the index of the element, if it does not appear, return -1
+        arr.includes(ele) //ES6 methods (return a boolean value)
+        arr[0]=val //assgin the value directly
+
+4. Object
+    . create an object (two ways)
+        . const obj1={prop1:val1,prop2:val2,...};
+        . const obj2={}; obj2.prop1=val1; obj.prop2=val2;
+    
+    . dot vs bracket notation
+        How to infer a property?
+        obj1.prop1 (dot notation)
+        obj1['prop1'] (bracket notation) //note thay here is the string name not the variable name
+
+    . if we infer a property that does not exist in the object, it will return undefined.
+
+    . prop:val val can be any data type, even can be a function expression (a function attached with a object is called method)
+    . this keyword in the method refers to the object that infer this method!
+
+5. for-loop
+    . Math.random() generate a random number from 0 to 1
+    . Math.trunc() cut the decimal part.
