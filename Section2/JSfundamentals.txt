@@ -58,7 +58,7 @@
         console.log("hello"+(a+b))  ---> "hello2000"
         console.log("hello"+a-b)  ---> error
 
-    template string:
+    template literal:
     `Just like a fire`;
     `Just iike ${variable} ha`;
 
@@ -71,6 +71,7 @@
     . type conversion:
         . String ---> number  Number(s)
         . Number ---> String  String(num)
+        .        ---> boolean Boolean() 
 
     . type coersion:
         . string + number ---> string (e.g. '11'+5='115')

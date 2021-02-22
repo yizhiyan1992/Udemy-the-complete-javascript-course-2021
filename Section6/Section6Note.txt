@@ -1,0 +1,18 @@
+1. quickly generate the HTML template in VScode: entering "!"
+
+2. block element vs. inline element
+
+3. class and id attributes
+
+4. box model in CSS
+    . margin
+    . border
+    . padding
+    . content
+
+
+5. some notes
+    .when we set width/height it will automatically scale
+    . * {} the asterio sign will include all the elements
+    . box-sizing: border-box 
+    . in CSS, it uses - to name variables
