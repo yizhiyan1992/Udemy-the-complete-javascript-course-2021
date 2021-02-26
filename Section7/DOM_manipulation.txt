@@ -1,0 +1,116 @@
+1. DOM structure
+    . the dom tree starts with document element
+                document
+                   |
+                  HTML
+                |       |
+               title   body
+                       |    |   |
+                      Div   Div Span
+                                |
+                                text
+
+2. How to get element?
+    . document.querySelector('selector') //use the css format selector
+    . document.querySelectorAll('selector') // one of the limitation of querySelector is that when it has multiple matches, it will only return the first one but not all qualified elements. We use querySelectorAll to return a list of elements. 
+    . document.getElementById('IDname')
+    . document.getElementsByTagName('tagName') // return an array
+    . document.getElementsByClassName('className') //return an array
+
+3. access the content of the element (property)
+    . element.textContent
+    . element.innerHTML
+    . element.value
+
+    what is the different?
+        textContent will get the entire string
+        innerHTML will parse the tag element inside the text
+        value is used for form and input elements.
+
+4. Some important semantic elements in HTML5
+    . header: content at the top of webpage (e.g. title etc.)
+    . main : the main content of a webpage, there is only one main element in a HTML
+    . section : the block-level element in the main element
+    . article: the block-level element in the main (what is the difference between article and section)
+    . nav : the navigation bar at the top of webpage
+    . footer: the navigation bar at the btm of webpage
+
+    a template:
+    <html>
+        <head>
+            <title>
+            <link>
+        </head>
+        <body>
+
+            <header>
+                <nav>
+                    <ol>
+                </nav>
+            </header>
+
+            <main>
+                <section>
+                    <div>
+                    </div>
+                </section>
+                <article>
+                </article>
+            </main>
+
+            <footer></footer>
+        </body>
+    </html>
+
+5. button and input elements
+    . button element
+        <button type="">content</button>
+        type can be "button","submit","reset"
+        content can be txt, picture
+        type attribute must be declared
+    
+    . input element
+        <input type="" value="">
+        input element is an empty element
+        type can be mainly set as :"text","number",and "button"
+
+6. event handler
+    multiple ways to evoke event handler.
+    most common one:
+    element.addEventListener("type",function);
+    e.g.    ele.addEventListener('click',function(){
+        ...
+    });
+
+7. change the css style using JS
+    1. select the element;
+    2. .style.attributeName='style'
+    Note:   . in CSS, the attribute name is separated by -, like background-color,
+            however, in JS, the attribute name is camel style, like backgroundColor,
+            . the property value assined to the style should be string !!! e.g. ='20px';
+    
+8. access the class of the element in JS
+    1. get the element
+    ele.classList // return a listNode of class
+    2. How to manipulate the class list
+    ele.classList.add("newClass")
+    ele.classList.remove("oldClass")
+    ele.classList.contains("ele")
+    ele.classList.toggle("ele") // if the ele is in the class, it then removes the ele, if it is not in class it then adds the ele class.
+
+9. how to pop up a window?
+    1) define a hidden div element
+    2) add event handler that removes the hidden class
+    3) when the user operates, event handler is activated
+    4) close the window
+
+10. Event handler
+    When we use the addEventListener(), we can pass a parameter into the function, and it will become the onject recording this event (like mouseEvent, keyBoardEvent etc.)
+    
+    document.addEventListener() // add the event handler to all elments in HTML
+    Three types for keyboard operations:
+        . keypress
+        . keydown
+        . keyup
+        different : in keydown and keyup, the keyCode perperty is not case sensitive.
+
