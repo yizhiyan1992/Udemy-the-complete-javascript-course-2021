@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess My Number</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div>
+        <button id="reset-btn" class="button" type="button">Again!</button>
+      </div>
+      <div id="hint">&lt; Between 1 and 20 &gt;</div>
+      <div id="game-name">Guess My Number!</div>
+      <div id="hidden-number">?</div>
+      <br />
+    </header>
+
+    <main>
+      <section class="section-left">
+        <input id="input-box" type="number" />
+        <div><button class="check button" type="button">Check!</button></div>
+      </section>
+
+      <section class="section-right">
+        <div id="InfoBoader">Start guessing...</div>
+        <div>&#x1F947; Scores: <span id="current-score">20</span></div>
+        <div>&#x1F947; Highscore: <span id="high-score">0</span></div>
+      </section>
+
+      <script src="guessNumber.js"></script>
+    </main>
+  </body>
+</html>

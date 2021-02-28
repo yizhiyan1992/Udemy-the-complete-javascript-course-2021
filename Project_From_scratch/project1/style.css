@@ -1,0 +1,72 @@
+body {
+  font-family: "DotGothic16", sans-serif;
+  font-size: 30px;
+  color: antiquewhite;
+  background-color: rgb(54, 52, 52);
+}
+
+header {
+  height: 400px;
+  border-bottom: solid wheat 7px;
+}
+#reset-btn {
+  margin-top: 0;
+  float: left;
+}
+#hint {
+  float: right;
+}
+#game-name,
+#hidden-number {
+  font-size: 50px;
+  width: 600px;
+  position: relative;
+  text-align: left;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+  /*
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+  */
+}
+main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#hidden-number {
+  background-color: burlywood;
+  color: rgb(54, 52, 52);
+  margin-top: 140px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}
+.section-left,
+.section-right {
+  margin-top: 150px;
+  height: 200px;
+  width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#input-box {
+  width: 200px;
+  height: 70px;
+  border: burlywood solid 5px;
+  background-color: transparent;
+  font-size: 30px;
+  color: burlywood;
+}
+.button {
+  width: 150px;
+  height: 50px;
+  margin-top: 20px;
+  font-size: 30px;
+}
