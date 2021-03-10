@@ -1,0 +1,45 @@
+1. default parameters in function
+    function(p1=x,p2=y,...) {
+
+    }
+
+    How to skip the second paramter when we call a function?
+    func1(x,undefined,y,...) // set it as undefined
+
+2. passing by reference VS passing by value
+    passing by value means that the original varible won't change.
+    JS function belongs to pass by value
+
+3. first-class function:
+    . functions are first class in JS
+    . this means that functions are just values in JS
+    . we can store functions as methods in OBJ
+    . we can pass functions as arguments to other functions (addEventListener)
+    . we can return functions from functions
+    , we can call methods on function...
+
+4. high-ordered function:
+    function receives another function as an argument / or return function
+
+5. what is callback function?
+    a funtion passed into another function as a argument that will be called latter (just like the funtion in event handler)
+    the event handler: a thought of abstraction (high level func & callback func)
+
+6. a function can also return a function
+    .what is closure?
+    : In JS, because of the scope chain, we can only access the outer defined variable, but we cannot access the variable defined inside the function at outer scope. Closure can achieve this goal.
+    Specifically, we create a new function inside a function, and we return it as a val (first-class attribute). Now we can access the inner variables through this "interface".
+
+7. call, apply, bind methods
+    In JS, even function has methods.
+    Remember in JS, this keyword in regular function is undefined, these three methods can specifically assign this keyword to a certain object.
+
+    func1.call(obj,arg1,arg2,...);
+    func1.apply(obj,[arg1,arg2,..]);
+    func1.bind(obj) // bind is different to call and apply, bind generate a new function (a different one)
+
+    partial application:
+    in the bind function, we can actually pre-pass some parameters.
+    For example, we have function func1(arg1,arg2,arg3,...)
+    we can do const newFunc=func1.bind(obj,arg1)
+    when we call this new bind function, we only need call newFunc(arg2,arg3,...); 

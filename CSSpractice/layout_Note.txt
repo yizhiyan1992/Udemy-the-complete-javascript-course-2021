@@ -1,0 +1,62 @@
+part 1: position
+
+    1. static position
+        the default position of elements.
+
+    2. position: relative
+        . relative to what?
+            relative to its original position. The relative position layout would still occupy the space in DOM stream.
+
+    3. position: absolute
+        . the absolute position layout would make the element fly out of the DOM stream
+        . how to position?
+            1. it will find the first ancestor that is not static position layout. (If not such element exists, then it uses HTML element for relative positioning.)
+            2. must use two of the top, bottom, left, right to position the element, otherwise the absolute position will fail.
+            3. The margin of the ancestor will impact absolute position, but the padding of ancestor won't. The conclusion here is that the absolute position layout uses the border of the ancestor for relative position.
+
+    4. position: fixed
+        . detached from the DOM stream
+        . the position will be relative to the window
+
+part 2: transform addtribute
+    transform attribute can be used for rotating, resize, and move element
+    . transform: rotate(45deg) // rotate 45 degree
+    . transform: scale(0.5,0.5) // resize the element
+    . transform: translate(-50%,-50%) //move the element to the left right side (half length of X and Y)
+    . transform: skew(45deg,45deg) //skew the element
+
+    Q: how to use multiple function of transform?
+        use blank space the seperate those functions
+        transform: rotate() scale();
+
+part 3: the difference between block and inline elements
+    block-level elements: automatically occupy the entire row
+    inline element: right close follow the last elements (does not generate a new row)
+    the block-level elements can contain block-level and inline elements, but inline elements can only contain inline elements;
+
+    common block-level elements:
+        div,form,table,p,ol,ul
+    common inline elements:
+        span, inout, label, br 
+
+    we can use display attribute to change the level of layout
+
+part 4: display attribute
+    display: none // hide the element (it won't occupy the DOM stream)
+
+    display: block //set the layout level to block-level 
+        . the width of block level element is the window size by default.
+        . can set width and height property
+        . can set margin and padding property
+
+    display: inline
+        . multiple inline elments will stay in same row
+        . width and height does not work to inline elements
+        . padding-left,right and margin-left, right can be effective
+    
+    display: inline-block
+        . presented as inline elements but can set height,width, margin, padding as block elements
+    
+    display: flex (!important)
+
+part 5: float attribute

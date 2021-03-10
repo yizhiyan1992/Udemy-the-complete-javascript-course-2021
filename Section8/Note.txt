@@ -1,0 +1,304 @@
+1. high level overview of JS
+    several important features of JS:
+        . high-level language: like python (don't need to take care of recourses, but run much slower than low level language)
+        . garbage collection mechanism
+        . interpreted or just-in-time-compile
+        . multi-paradigm
+            paradigm talks about the programming styles including:OOP, functional programming, and procedure programming
+        . prototype-based object-oriented
+        . firs-class function: a function can simply be a variable and being passed to other function as argument
+        . dynamic (vs. static e.g. java)
+        . single-threaded
+        . non-blocking event loop
+
+2. JS engine and runtime
+    JS engine: program that executes the JS code
+    Example: google V8 engine
+
+    What is the difference between compile and interpret?
+    Compilation:
+    Entire code is converted into machine code at once, and written to a binary file that can be executed immediately
+
+    source code---step1: compilation--->protable file (machine code)---step2: execution--->program running
+    
+    Interpretation:
+    interpreter runs through the source code and executed line by line.
+
+    source code---step 1 execute line by line--->program running
+    
+    Just-in-time (JIT) compilation:
+    Entire code is converted into machine code at once, then executed immediately.
+
+    JS engine includes call stack and heap. Call stack is the place executing functions, and heap is used to store objects
+    
+    During the JS engine parsing the code, it will generate AST (abstract syntax tree)
+
+    JS is not a interpreter language
+
+    What is JS runtime?
+    We can think JS runtime as a big box that contains the elements the JS will use.
+    . JS engine
+    . WEB APIs (ajax, DOM, Fectch API, Timers,.....)
+    . callback queue and loop event
+
+3. Execution context
+    Environment in which a piece of code of JS is executed.
+    There is only one global execution context (not inside any function, top level)
+    For each funtion, a new execution context is created.
+
+    What's inside execution context?
+        . var Environment
+            decleration, functions, arguments object (an array of passed arguments)
+        . scope chain
+        . this keyword
+        (arrow function does not have arguments object and this keyword!!!)
+    
+    let's go back to the call stack (one of the two components in the JS engine)
+    Call stack is the place where execution contexts get stacked on top of each other, to keep track of where we are int the exectuion. So that the order of the function execution never get lost! JS is a single thread programming language.
+
+    For instance:
+        global context--->first function--->second function (inside the first function)--->go back to first function--->go back to global context
+
+4. Scope and Scope chain
+    Scope:
+    Scoping: where do variables live?
+    Definition: Space and environment in which a certain variable is declared.
+    There is global scope, function scope and block scope
+    Scope of a variable: region of our code where a certain variable can be accessed.
+
+    . global scope:
+        outside of any blocks or functions
+        global scope are accessible everywhere
+    . function scope:
+        variables are accessible only inside function, NOT outside.
+    . block scope:
+        only inside block.
+        However, this definition only appear after ES6. Thus, it only valid for const, and let. If we use var to declare a variable, it is function scope.
+    
+    Scope chain:
+        Scope has access to variables from all outer scopes, but this is false the other way around.
+        PS. scope chain has nothing to do with the call stack.
+    
+    Some notes:
+        . what if there are multiple var with same name but in different scope?
+            JS will search alone the scope chain until it meets the first one.
+        
+        . can a variable be changed in the inner scope? Yes!
+        . But if you define a varaible with same name in the inner scope, then they are completely different variables, and the outer one won't change.
+
+5. hoisting
+    concept: makes some types of variables accessible/usable before they are declared.
+
+    A list:                     Hoisted?        Initial value       Scope
+        function decleration    Yes             Actual function     block
+        var variables           Yes             undefined (bugs...) function
+        let,const               non             TDZ                 block
+        func exp, arrow         depends on if we use var or const/let
+    
+    TDZ: temporal dead zone
+    makes it easier to avoid and catch errors.
+    When we hoist var variables, we will get undefined.
+    So the experience here is that don't use var;
+    declare the variables first at the top of the code.
+    The variables defined by var in the global scope can be a property of window. But the variables declared by let, and const will not
+    e.g. var x=5;
+        window.x=5
+
+6. this keyword
+    this keyword: a special variable that is created for every execution context (function). It takes the value of the "owner" of the function in which the this keyword is used.
+    4 situations:
+        . a method: this=object that is calling the method
+        . simple function call: this=undefined (in strict mode, otherwise it will be the window object)
+        . arrow function: this of surrounding function (lexical this)
+        . event listener: the DOM element that is calling the event
+
+7. regular function vs. arrow function
+    different:
+        . this: calling regular function this will be undefined, this is the parental this .
+        . arrow funtion does not have arguments variable
+
+        rule of thumbs:
+            . never use arrow function as method
+            . when we nested functions, we can consider using arrow function as inside function.
+
+8. primitive vs object
+    primitive type are stored in call stack; objects, functions,... are stored in heap.
+    When we created a primitive type, we put that in a fixed memory space, and the variable points to the address of that primitive type.
+    When we created a object, it was created in the heap, in the call stack, the address of the object is stored in the memory space, and a variable points to the address of the address of the object in the heap (not directly point to the address of object!)
+
+    How to operate shallow copy?
+    const objCopy=Object.assgin({},obj) // the method merges two obj and generates a new one.
+
+    How to deep clone? use external library.
+
+9. destructure array and destructure object
+    arr=[1,2,3];
+    const [x,y,z]=arr;
+    const [x, ,z]=arr; //skip the middle valid
+    const [x=1,y=1,z=1]=arr; // set default value as 1
+
+10. the spread operator (...)
+    taking all the elements in the array and write them manually
+    const arr=[1,2,3,5,6];
+    const newArr=[3,1,2,...arr];//unpack all elements int he array but does not create new variables.
+
+    iterables includes arrays, strings, maps, sets, but not objects.
+    and spread operator can be used on all iterables.
+    ! multiple values seperated by commas are used by passing to functions or when we put into array.
+
+    it can be used to shallow copy array and object
+
+11. rest patten: pack the value into array
+    also use ... but it is located to the left side of =
+    function: pack the remaining variables into array
+    e.g. 1
+    function(a,b,c,...m) {
+        ....
+    }
+    When we pass variables more than 3 into function , the remaining varaibles will be packed into method
+
+    e.g. 2
+    const [a,b,...r]=[1,2,3,4,5];
+    //r=[3,4,5]
+
+12. for-of loop ( which is very similar to the for-each loop in java)
+    . syntax:
+        for (const ele of arr) {
+            console.log(ele);
+        }
+    
+    . if we want both index and element:
+        for (const [index,ele] of arr.entries()) {
+            .........
+        }
+
+13. enhanced object literals
+    1. assign a property value with the same name of it
+        const oopenHour='xxx';
+        e.g. Obj {
+            openHour=openHour;
+        }
+        we can just write :
+            Obj{openHour};
+    
+    2. write a method
+
+        method1: function(){
+            ....
+        }
+        we can just write:
+        method1() {
+            ....
+        }
+    
+    3. compute the property names in obj
+        for example,
+        Obj.monday can be accessed as Obj['monday'] as well.
+
+14 logic operator and short circuiting
+    In JS, logic operator can be applied to any data types;
+    1. || 
+    if the first value is true, then it will be the first value; otherwise it will be the second value
+    e.g. 4 || 5  return 4
+        '' || 'hello' return 'hello'
+    
+    2. &&
+    if the first value if false, it then return the first value, otherwise the second
+    e.g. 4 && 5 return 5
+        0 && 6 return 6
+
+    3. ??
+    similar to || except that only undefined and null are the falsy value here.
+    
+15 optional chaining
+    check if one property exist.
+    For instance, when we want to access User.name.firstName;
+    we are not sure if name exists, firsName eisits.
+    Now we can use: User?.name?.firstName;
+    if one of the property does not exist, then it will return undefined (short-circuiting)
+
+    optional chaining is usually combined with ?? operator
+
+16. access all keys and values in an object
+    Object in JS is a top-level Object, it is also a contructor function
+    static methods:
+        Object.keys(obj)
+        Object.values(obj)
+        Object.entries(obj) //get both key and valid
+        Object.assign(target,source1,source2) // give the attributus in sources to the target obj
+        Object.assgin({},source1) //shallow copy 
+
+17. set
+    . create a new set:
+        const s=new Set(iterable obj)
+    . method and properties
+        s.size;
+        s.add()
+        s.delete()
+        s.has()
+    
+    . how to turn a set to array? using spread operator
+        const arr=[...s] 
+
+18. Map
+    . create a new map:
+        const map=new Map();
+    
+    .methods and properties:
+        map.size;
+        map.set(key,val);
+        map.delete(key);
+        map.has(key);
+        map.get(key);
+        map.keys()/map.values()/map.entries() // get the iterables of the map, if we want to get array, we need to do [...iterable]
+
+    . In map, the key can be anything, even object and array (the referencing value)
+
+    . another way to populate the map:
+        new Map(array[[key1,val1],[key2,val2],...])
+        // use an array nested array
+
+        This invoke a convenient way to transfer object to Map
+        new Map(Object.entries(obj));
+
+        we can also use for-of loop on map, because map is also an iterable class
+    
+19. How to choose data structure
+    Source of data in JS:
+        . object itself defined (source code)
+        . user input
+        . external APIs
+    
+    array vs set: contains duplicates or not
+
+    Object vs map:
+        object: use when we want to deal with json; when we want to access this keywords
+        map: when the key has different types 
+        map is also iterable
+
+20. work with strings
+    string operations:
+        . get the char: s[index];
+        . slicing s.slice(s,e);
+        . search the first index of a char: s.indexOf(char);
+        . s.toUpperCase()
+        . s.toLowerCase()
+        . s.replace(a,b) //this method would only replace the first appearance of a. If we want to replace them all, we need to use reg expression.  Also , not inner replacement, it will instead generate a new string 
+        . s.replaceAll()
+        . s.includes(subs) //return boolean
+        . s.startWith(subs) //return boolean
+        . s.endWith(subs) //return boolean 
+        . s.trim() //remove blank spaces left and right
+        . s.trimStart() s.trimEnd()
+        . s.padStart(totalLen,symbol) // s.padStart(10,'#');
+        . s.padEnd();
+        . s.plit(symbol) //generate an array
+        . arr.join(symbol) //generate a string
+        . s.repeat(n) //repeat the string n Timers
+        more operations: concatenate, reverse ......
+
+    the theory behind string methods in JS:
+        when we apply a method on string, the string primitive type will automatically turn to string object, and use string object methods.
+        after that, it will turn back to string primitive type.
+
+    
