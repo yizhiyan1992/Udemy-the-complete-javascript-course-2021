@@ -4,7 +4,7 @@
                    |
                   HTML
                 |       |
-               title   body
+               head    body
                        |    |   |
                       Div   Div Span
                                 |
@@ -81,6 +81,13 @@
     e.g.    ele.addEventListener('click',function(){
         ...
     });
+
+    common events:
+        1. click
+        2. mouseover
+        3. mouseleave
+        4. DOMContentLoad
+        5. keydown
 
 7. change the css style using JS
     1. select the element;

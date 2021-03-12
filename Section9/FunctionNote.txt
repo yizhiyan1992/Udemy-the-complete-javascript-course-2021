@@ -42,4 +42,20 @@
     in the bind function, we can actually pre-pass some parameters.
     For example, we have function func1(arg1,arg2,arg3,...)
     we can do const newFunc=func1.bind(obj,arg1)
-    when we call this new bind function, we only need call newFunc(arg2,arg3,...); 
+    when we call this new bind function, we only need call newFunc(arg2,arg3,...);
+
+8. iife: immediately invoked function 
+    (function(args) {
+        statements;
+    })(); //use the braces to wrap up the function.
+
+9. closure:
+    A function has access to the variable environment of the execution context in which it was created. (even after the parent function is gone)
+    Close: (VE attached to the function, exactly as it was at the time and place the function was created)
+    Analogy: a person who never loses the connection to its hometown.
+
+    console.log vs console.dir  // console.dir will print all the methods and properties of an object.
+    
+    closure does not necessarily mean a function return a funtion (it is just one kind)
+    We assign a function in the funtion is also closure.
+    
