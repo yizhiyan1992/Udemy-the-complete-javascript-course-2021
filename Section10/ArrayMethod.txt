@@ -1,0 +1,54 @@
+1. slicing array:
+    just like the slice method for string
+    arr.slice(s,e);
+    arr.slice(); //shallow copy
+
+    splice method:
+    similar to slice, but it remove the slicing elements in the original array.
+
+2. reverse method:
+    arr.reverse() // return the reversed array, meanwhile, it also mutates the original array
+
+3. concat method:
+    arr1.concat(arr2) // return a concatenated array, and does not mutate original arrays
+
+4. forEach method:
+    arr.forEach(func)
+    // pass a callback function in the forEach method as argument
+    // this function takes three parameters. func(ele,idx,arr) {...}
+    // we cannot use break and continue in forEach method
+
+    forEach() method can be also applied to set and map function(val,key,map), function(val,_,set)
+
+5. DOM manipulation:
+    ele.insertAdjacentHTML(position,text)
+    // 1. the text will be parsed to HTML element, and will be attached to the DOM tree according to the position
+    position param: "beforebegin","beforeend","afterend","afterbegin"
+
+6. Array transformation methods:
+    . map // similar to forEach function, but it return a new array after map function.
+    . filter // return a boolean value in the function.
+    . reduce // reduce takes two args (function(), intialVal)
+    //function takes for args : accumulator,ele,idx,arr
+    // the return value will be the accumulator in the next iteration. 
+    //Finally return the accumulator value
+
+7. chaining all the methods together
+    but when we chain all the things together, sometimes it is hard to debug
+
+8. find method
+    arr.find(func())
+    the func() returns a boolean value, which returns the first element that is true. If no matching value found, returns undefined
+
+9. findIndex method
+    arr.findIndex(funct()) // return the first index that is true
+
+10. some and every methods
+    arr.some(func())
+    arr.every(func())
+    similar to arr.includes(). return a boolean value, but includes can only pass number, some and every can pass condition.
+
+11. flat, flatMap
+    flat method flat the nested array.
+    arr.flat(N) //N is the depth
+    flatMap is a combination of flat and map method.
