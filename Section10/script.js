@@ -61,9 +61,13 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const display = function (acc) {
+const display = function (acc, sort = false) {
+  const movs = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
+
   containerMovements.innerHTML = '';
-  acc.movements.forEach(function (mov, i) {
+  movs.forEach(function (mov, i) {
     const depositOrWithdraw = mov < 0 ? 'withdrawal' : 'deposit';
     const html = `<div class="movements__row">
           <div class="movements__type movements__type--${depositOrWithdraw}">
@@ -132,6 +136,7 @@ const updateUI = function (acc) {
 };
 
 let currentAccount;
+let sortStatus = false;
 
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
@@ -204,6 +209,12 @@ btnClose.addEventListener('click', function (e) {
     console.log(accounts);
     containerApp.style.opacity = 0;
   }
+});
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  sortStatus = !sortStatus;
+  display(currentAccount, sortStatus);
 });
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -307,9 +318,109 @@ const calcAverageHumanAge = function (arr) {
 };
 const newAge = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 console.log(newAge.reduce((accu, ele) => accu + ele, 0) / newAge.length);
-*/
+
 
 const nestedArr = [6, 5, [4, 3, [2, 1]], 1, [2, 2]];
-console.log(nestedArr.flat(2));
+const flatArr = nestedArr.flat(2);
 const accountMovements = accounts.map(acc => acc.movements);
 console.log(accountMovements.flat().reduce((accu, ele) => accu + ele, 0));
+flatArr.sort((a, b) => a - b);
+console.log(flatArr);
+
+
+const arr = new Array(10).fill(0);
+console.log(arr);
+const arr2 = Array.from({ length: 7 }, () => 1);
+console.log(arr2);
+const arr3 = Array.from({ length: 10 }, (_, idx) => idx + 1);
+console.log(arr3);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value')
+  );
+  console.log(movementsUI.map(ele => Number(ele.textContent.replace('€', ''))));
+});
+
+*/
+
+/* 
+Julia and Kate are still studying dogs, and this time they are studying if dogs are eating too much or too little.
+Eating too much means the dog's current food portion is larger than the recommended portion, and eating too little is the opposite.
+Eating an okay amount means the dog's current food portion is within a range 10% above and 10% below the recommended portion (see hint).
+
+1. Loop over the array containing dog objects, and for each dog, calculate the recommended food portion and add it to the object as a new property. Do NOT create a new array, simply loop over the array. Forumla: recommendedFood = weight ** 0.75 * 28. (The result is in grams of food, and the weight needs to be in kg)
+2. Find Sarah's dog and log to the console whether it's eating too much or too little. HINT: Some dogs have multiple owners, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 🤓
+3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') and an array with all owners of dogs who eat too little ('ownersEatTooLittle').
+4. Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
+5. Log to the console whether there is any dog eating EXACTLY the amount of food that is recommended (just true or false)
+6. Log to the console whether there is any dog eating an OKAY amount of food (just true or false)
+7. Create an array containing the dogs that are eating an OKAY amount of food (try to reuse the condition used in 6.)
+8. Create a shallow copy of the dogs array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
+
+HINT 1: Use many different tools to solve these challenges, you can use the summary lecture to choose between them 😉
+HINT 2: Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should be between 90% and 110% of the recommended portion.
+
+TEST DATA:
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] }
+];
+
+GOOD LUCK 😀
+*/
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+
+const ownersEatTooMuch = [];
+const ownersEatTooLittle = [];
+
+dogs.forEach(function (ele) {
+  ele.recommendedFood = ele.weight ** 0.75 * 28;
+  if (ele.owners.includes('Sarah')) {
+    ele.curFood > ele.recommendedFood
+      ? console.log('eat too much')
+      : console.log('eat too little');
+  }
+
+  if (ele.curFood > ele.recommendedFood) {
+    ownersEatTooMuch.push(ele);
+  } else {
+    ownersEatTooLittle.push(ele);
+  }
+});
+
+let str1 = ownersEatTooMuch
+  .map(ele => ele.owners)
+  .flat()
+  .join(' and ');
+
+str1 = str1 + ' eat too much!';
+console.log(str1);
+
+console.log(dogs.some(ele => ele.recommendedFood === ele.curFood));
+console.log(
+  dogs.some(
+    ele =>
+      0.9 * ele.recommendedFood < ele.curFood &&
+      ele.curFood < 1.1 * ele.recommendedFood
+  )
+);
+
+const okFood = dogs.filter(
+  ele =>
+    0.9 * ele.recommendedFood < ele.curFood &&
+    ele.curFood < 1.1 * ele.recommendedFood
+);
+console.log(okFood);
+const dogCopy = dogs
+  .slice()
+  .sort((ele1, ele2) => ele1.recommendedFood - ele2.recommendedFood);
+console.log(dogCopy);

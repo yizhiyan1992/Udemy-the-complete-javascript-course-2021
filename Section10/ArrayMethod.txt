@@ -5,6 +5,7 @@
 
     splice method:
     similar to slice, but it remove the slicing elements in the original array.
+    but we can use splice to delete a certain element, e.g. arr.splice(index,1) 
 
 2. reverse method:
     arr.reverse() // return the reversed array, meanwhile, it also mutates the original array
@@ -52,3 +53,20 @@
     flat method flat the nested array.
     arr.flat(N) //N is the depth
     flatMap is a combination of flat and map method.
+
+12. sort
+    arr.sort()
+    By default, the sort method sorts the arr by lexigraphical order. We need to pass a comparator function in to sort() so that the sort method can sort the array in our defined way.
+
+13 create array
+    1.
+    const arr=new Array(7) //create an empty array with length of 7
+    arr.fill(1) // fill all elements with a default value
+    new Array(L).fill(defaultVal);
+
+    2. use Array.from() method
+    e.g. Array.from({length:10},()=>1);
+    
+    Array.from() can also change the array-like object elements into real array
+    for instance:
+    Array.from(document.querySelectorAll(ele),function());
