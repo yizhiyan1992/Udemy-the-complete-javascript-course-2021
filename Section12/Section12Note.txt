@@ -1,0 +1,94 @@
+1. In JS, all numbers are stored as the format of float
+    2===2.0 =>trut
+
+2. some decimal calculations are not precise:
+    0.1+0.2=0.3000000000001
+
+3. there are many ways to convert the string to number:
+    . Number(str)
+    . +str (type coersion)
+    . Number.parseInt(str,base) // str can be a number or the string start with number like 24pxjf (return 24)
+
+    . If we need the float number, we can use Number.parseFloat(str)
+
+4. check numbers
+    . Number.isNan() //check if the value if isNaN // in JS, NaN cannot be compared NaN===NaN will always return False
+    . Number.isFinite() //check if that is a finite number (recommended)
+
+5. Math operations  
+    . Math.sqrt()
+    . Math.max(arg1,...,argn) //Math.max(1,2,3,4,5,6);
+    // get the max val in an array: Math.max(...arr);
+    Math.PI //calculate the radius
+
+    How to get a random number between A and B 
+    const rand=Math.trunc(A+Math.random()*(B-A))+1;
+
+    . rounding
+        . Math.trunc() //simply remove the decimal
+        . Math.round() // the nearest integer
+        . Math.ceil()
+        . Math.floor() //floor and trunc are same only when the number is positive
+
+        //rounding to decimal
+        float.toFixed(length)  ===> will return a string
+
+    .the remainder operator %
+
+6. BigInt
+    . In JS, the maximum float number is 2**53-1 (64 bits, but 53 bits are used for numbers only)
+    . Number.MAX_SAFE_INTEGER;
+
+    . 232343n //add n at the tail will turn into BigInt
+    . create bigInt : BigInt(float)
+    . dont mix bigint with regular number; (it will get error)
+    . Math class operators cannot work on BigInt (e.g. Math.sqrt())
+
+7. Dates and time
+    ways to create Date object
+    . new Date() // when passing no arguments, it will return the current time object.
+    . new Date("date string") //passing a date string as the arguments
+    . new Date(YYYY,MM,DD,HH,MM,SS) //passing the time parameters (it is noted that Month is 0-based index)
+    . new Date(milliSeconds) // passing the time step, start from 1970
+    . Date.now() //return the current time step
+
+    Methods:
+    . obj.getFullYear()
+    . obj.getMonth()
+    . obj.getDate()
+    . obj.getDay() //return the day of week
+    . obj.getHours()
+    . obj.getMinutes()
+    . obj.getSeconds()
+    . obj.getTime() //return the time step
+    . obj.toISOString()
+
+    str.padStart(2,0)  *****0211
+
+8. Internationalize Dates
+    format the date based on differen countries.
+    new Intl.DateTimeFormat('en-GB').format(now) // en stands for english, GB stands for great britain.
+    How to get locale?
+    const locale=navigator.language;
+    navigator is BOM object, it contains the information of the browser, like userAgent etc...
+
+    We can also use Intl.NumberFormat to change the currency unit
+    const num = 3884764.23;
+    const options = {
+    style: 'currency',
+    unit: 'mile-per-hour',
+     currency: 'EUR',
+    };
+    console.log(Intl.NumberFormat('en-US', options).format(num));
+
+    Need to check Intl object and navigator later...
+
+9. timer function
+    1. setTimeout(callback function,milliseconds) //will execute only one time
+    2. setInterval(callback function,milliseconds) //will execute recursively
+
+    3. clearTimeout(timerName) and clearInterval(timerName) //terminate the function
+
+    4. if we want to pass the arguments into timer function, we can do:
+        setTimeout(func(),2000,arg1,arg2,.....)
+        then the funct() will take args.
