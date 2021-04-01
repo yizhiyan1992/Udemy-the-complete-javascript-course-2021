@@ -1,0 +1,91 @@
+1. How the dom really works?
+    DOM: the API between JS and browser
+
+    we want to create, add, delete HTML elements, set attributes, and respond events etc.
+
+    Every single nodes in the  DOM tree is of the type of Node (JS object)
+
+    the child types of node type:
+        1. elements (HTML elements)
+        2. text
+        3. comment
+        4. document
+    
+    Inheritance of methods and properties
+
+    * addEventListener is an abstract method from EventTarget abstract class
+
+2. DOM manipulation
+    1) find HTML elements:
+        . document.querySelector()
+        . document.querySelectorAll()
+        . document.getElementById()
+        . document.getElementsByTagName()
+        . document.getElementsByClassName()
+    
+    2) create elements
+        . document.creatElement("html tag")
+    
+    3) insert html elements:
+        . HTMLele.prepend(newEle) //first child
+        . HTMLele.append(newEle) //last child
+        . HTMLele.before(newEle) //sibling
+        . HTMLele.after(newEle) //sibling
+        . HTMLele.insertAdjacentHTML(position,text) //the text will be parsed as HTML element
+    
+    4) remove elements:
+        . ele.remove()
+    
+    5) setting css style (property)
+        ele.style.backgroundColor="XXXX" //use camel getElementsByClassName
+
+        or 
+        ele.style.setProperty("background-color","red); //use css style
+        How to get the css property?
+        getComputedStyle(element) //window function
+
+    6) attribute
+        there are two ways to set and get attributes 
+        element.className //not class!
+        element.getAttribute("class")
+        element.src="Xxxxxx"
+        element.setAttribute("scr","XXXXX")
+    
+    7) class operations:
+        element.classList
+        element.classList.add()
+        element.classList.contains() //return boolean
+        element.classList.toggle() //if exists, then delete/ if not exists, then add it.
+
+        don't use element.className="xxxx" to set class values, it will override other class values!
+    
+    8) data attributes
+        stored in the datasets.
+    
+    9) event handler
+        mouseenter // similar to the hover effect in css
+
+        how to remove the event handler?
+
+        ele.removeEventListener(event,function) //the event and function should be exactly the same as addEventListener.
+    
+    10) capturing and bubbling
+        capturing: when a event is invoked, it will first pass from the HTML to the element (parent--child), and the event happens.
+        bubbling: after the event is happending, this event will flow up along the parent elements till the HTML. (so, if parental elements also have same event, those event handler function will be invoked as well.)
+    
+    11) element position:
+        1. get the viewport size:
+            document.documentElement.width
+            document.documentElement.height
+        2. get the distance between viewport and web page:
+            window.pageXoffset
+            window.pageYoffset
+        3. get the distance between the element to the viewport: (relative distance)
+            element.getBoundingClinetRect()
+        4. get the abs distance between the element to the webpage: 
+            ?
+    
+    12) scroll the webpage
+        1. window.scrollTo({top:,left:}) //abs
+        2. window.scrollBt({top:,left:}) //relative
+        3. element.scrollIntoView({behavior:"smooth"}) //recommended mordern style
