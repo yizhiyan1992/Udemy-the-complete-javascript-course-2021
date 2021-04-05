@@ -39,3 +39,5 @@ middle.addEventListener('click', function () {
 inner.addEventListener('click', function () {
   console.log('this is inner!');
 });
+
+inner.closest('.box').style.backgroundColor = 'green';

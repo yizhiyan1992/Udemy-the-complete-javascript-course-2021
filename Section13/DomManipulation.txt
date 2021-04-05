@@ -72,6 +72,18 @@
     10) capturing and bubbling
         capturing: when a event is invoked, it will first pass from the HTML to the element (parent--child), and the event happens.
         bubbling: after the event is happending, this event will flow up along the parent elements till the HTML. (so, if parental elements also have same event, those event handler function will be invoked as well.)
+
+        how to identify the source event?
+            e.target 
+        how to identify the current event?
+            e.currentEvent
+        how to stop propagation?
+            e.stopPropagation()
+        
+        capturing is rarely used today.
+
+            e.preventDefault()// prevent something default happening, but the event will still flow up...
+            // for example, when the defualt behavior is clicking <a> tag and go to a webpage, it can prevent us going there.
     
     11) element position:
         1. get the viewport size:
@@ -89,3 +101,48 @@
         1. window.scrollTo({top:,left:}) //abs
         2. window.scrollBt({top:,left:}) //relative
         3. element.scrollIntoView({behavior:"smooth"}) //recommended mordern style
+    
+    13) what is event delegation?
+        we set the event handler at the parent elements, so that it can be triggered when we hit the child elements through bubbling events.
+
+        why event delegation?
+            less memory allocation. We do not need to assign each child element with an event handler.
+    
+    14) DOM traversal (they are mostly attributes not methods)
+        1. what is the difference between element and node?
+            element is intact. e.g: <div>Hello</div>
+            However it contains the HTML node and text node.
+            To simplify, an element is must a node, but a node is not necessarily an element.
+        
+        2. query the elements
+        (1) downward: ele.querySelector() //querySelector can be used by any element not just document. It will search down along the parent
+        (2) upward: ele.closest() //like the converse function of querySelector, it travels upward and find the nearest one match the selector (including the elem itself.)
+
+        3. get the child elements:
+            .ele.childNodes //return the nodes
+            .ele.children //return the elements
+            .ele.firstElementChild
+            .ele.lastElementChild
+        
+        4. get the parent:
+            .ele.parentNode
+            .ele.parentElement
+        
+        5. get the siblings:
+            .ele.previousElementSibling
+            .ele.nextElementSibling
+            .ele.preivousSibling //return the node
+    
+    15) how to make tabbed elements?
+        . create a bunch of tabs and corresponding contents to each tabbed
+        . use a class --active to control which tab and which element are currently in display.
+        . use event delegation to control all tabs (be careful of the detailed implementation of it, such as guard clause etc.)
+        . de-active all tabs first and activate the tab that is clicked.
+        . use the same logic on corresponding content.
+    
+    16) Intersection observer API
+        steps:
+        1) create the obj: const io=new IntersectionObserver(callback,opt)
+        2) opt is an object defining the root (root:null means it is the viewport)
+        3) define the callback function (the callback function takes a list of entries as the arguments, where each entry in the list is the triggering event when the viewport hits the threshold. And generally it will hit two times, when it enters the threshold and when it leaves the threshold.)
+        4) determine the onject that shold be observed (io.observe(element))
