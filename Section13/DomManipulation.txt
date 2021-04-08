@@ -146,3 +146,10 @@
         2) opt is an object defining the root (root:null means it is the viewport)
         3) define the callback function (the callback function takes a list of entries as the arguments, where each entry in the list is the triggering event when the viewport hits the threshold. And generally it will hit two times, when it enters the threshold and when it leaves the threshold.)
         4) determine the onject that shold be observed (io.observe(element))
+    
+    17) Life cycle DOM events
+        1. document.onDOMContentLoaded  //as the name suggested, the event will be triggered after the DOM tree generated. At this moment, the image and other stuffs might not be fully loaded.
+        2. window.onload // all the things in the webpage are loaded. (usually after DOMContentLoaded)
+        3. window.onbeforeunload // when the user about to leave the webpage (alert to user if they submit the form or other things...)
+    
+    18) async and defer attribute for the script
